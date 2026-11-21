@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 
 <PropertyList>
-  <name>lightning</name>
+  <name>lighting</name>
   <modal type="bool">false</modal>
   <layout>vbox</layout>
   <group>
@@ -10,7 +10,7 @@
       <stretch>1</stretch>
     </empty>
     <text>
-      <label>Lightning</label>
+      <label>Lighting</label>
     </text>
     <empty>
       <stretch>1</stretch>
@@ -36,15 +36,14 @@
   <group>
     <layout>hbox</layout>
     <group>
-      <!-- Labels -->
       <layout>vbox</layout>
       <halign>left</halign>
       <text>
-        <label>Board Light</label>
+        <label>Board Light (only Rembrandt)</label>
         <enable><property>sim/rendering/rembrandt/enabled</property></enable>
       </text>
       <text>
-        <label>Side Light</label>
+        <label>Side Light (only Rembrandt)</label>
         <enable><property>sim/rendering/rembrandt/enabled</property></enable>
       </text>
       <text>
@@ -53,10 +52,6 @@
       <hrule />
       <text>
         <label>Taxi / Landing</label>
-      </text>
-      <text>
-        <label>ALS / Landing</label>
-        <enable><property>/sim/rendering/shaders/skydome</property></enable>
       </text>
       <text>
         <label>Formation</label>
@@ -77,6 +72,7 @@
     <group>
       <layout>vbox</layout>
       <halign>right</halign>
+
       <slider>
         <name>boardLightUV</name>
         <property>/controls/lighting/boardLightUV</property>
@@ -121,16 +117,6 @@
         <binding>
           <command>property-toggle</command>
           <property>/controls/lighting/landing-lights[1]</property>
-        </binding>
-      </checkbox>
-      <checkbox>
-        <name>ALSLanding</name>
-        <property>/sim/rendering/als-secondary-lights/use-landing-light</property>
-        <enable><property>/sim/rendering/shaders/skydome</property></enable>
-        <live>true</live>
-        <binding>
-          <command>property-toggle</command>
-          <property>/sim/rendering/als-secondary-lights/use-landing-light</property>
         </binding>
       </checkbox>
       <checkbox>
@@ -180,18 +166,31 @@
       </checkbox>
     </group>
   </group>
+
   <hrule />
+
   <group>
     <layout>hbox</layout>
     <button>
-      <legend>Close</legend>
-      <default>true</default>
-      <key>Esc</key>
+      <legend>Toggle Cockpit Lights</legend>
       <binding>
-        <command>dialog-close</command>
+        <command>property-cycle</command>
+        <property>/controls/lighting/cockpit-lights-side</property>
+        <value type="float">0.9</value>
+        <value type="float">0</value>
+      </binding>
+      <binding>
+        <command>property-cycle</command>
+        <property>/controls/lighting/cockpit-lights-top</property>
+        <value type="float">0.9</value>
+        <value type="float">0</value>
       </binding>
     </button>
   </group>
+
+  <empty>
+    <stretch>1</stretch>
+  </empty>
 
 </PropertyList>
 

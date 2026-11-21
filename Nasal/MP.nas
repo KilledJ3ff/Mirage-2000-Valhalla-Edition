@@ -13,26 +13,36 @@ var Decode_Load = {
         m.loadList = [
           "2000 l Droptank",
           "SCALP",
+          "GBU-12",
           "1700 l Droptank",
+          "Smoke Pod",
           "AM39-Exocet",
           "2 x GBU-12",
           "1700 l Droptank",
+          "AS-37-Armat",
+          "GBU-24",
           "AS-37-Martel",
           "PDLCT",
           "Matra Super 530D",
           "AS30L",
+          "2 x SAMP Mk-82",
           "30mm Cannon",
           "none",
           "MICA IR",
           "1300 l Droptank",
           "Matra R550 Magic 2",
+          "APACHE",
           "2000 l Droptank",
+          "SAMP Mk-82",
+          "2 x SAMP Mk-82 Snake-eye",
           "MICA EM",
-          "ASMP"
+          "ASMP",
+          "SAMP Mk-82 Snake-eye"
         ];
         m.decode();
         return m;
     },
+    
     
     decode: func()
     {
@@ -45,10 +55,16 @@ var Decode_Load = {
         var String = StringTree.getValue();
         var myIndexArray = [];
         
+        #forindex(i; me.loadList){
+        #  print(me.loadList[i]);
+        #}
+          
+        
         #print("String "~String);
         
         if(String != nil)
         {
+          #print("String "~String);
           #String = getprop("sim/multiplay/generic/string[1]");    
           #Index of the beguining of each set string
           var mySetIndexArray = [];
@@ -72,10 +88,11 @@ var Decode_Load = {
             }else{
               var myCount = substr(String, myCountIndexArray[i] + 1, size(String) - myCountIndexArray[i]-1);
             }
-            
-            #print(mySet);
-            #print(myCount);
-            #print(me.loadList[mySet]);
+            #print("Pylons:"~i~" Loads index:"~ mySet ~ " Name of load:"~ me.loadList[mySet] ~ " Weapons remaining:" ~ print(myCount));
+            #print("mySet:"~mySet);
+            #print("myCount:"~myCount);
+            #print("me.loadList[mySet]:"~me.loadList[mySet]);
+            #print("Pylons:"~i~" Loads index:"~ mySet ~ " Name of load:"~ me.loadList[mySet] ~ " Weapons remaining:" ~ print(myCount));
             me.mySelf.getNode("payload/armament/station/id-"~ i ~"-set", 1).setValue(me.loadList[mySet]);
             me.mySelf.getNode("payload/armament/station/id-"~ i ~"-count", 1).setValue(myCount);
             
@@ -103,7 +120,8 @@ var Encode_Bool = func(){
   mycomp       = props.globals.getNode("/gear/gear[1]/wow").getValue()          ~ mycomp;
   mycomp       = props.globals.getNode("/gear/gear[2]/wow").getValue()          ~ mycomp;
   mycomp       = props.globals.getNode("/controls/ground-equipment").getValue() ~ mycomp;
-
+  
+#   print("Sended String :"~mycomp);
   var myIntBool = bits.value(mycomp);
   setprop("sim/multiplay/generic/int[8]",myIntBool);
 }
@@ -143,12 +161,12 @@ var Decode_Bool = {
         
         var receivedString = bits.string(myLocalIntObject, 10);
         #print("myLocalIntObject"~myLocalIntObject);
-        #print("receivedString"~receivedString);
+#         print("receivedString:"~receivedString);
         
         me.mySelf.getNode("controls/ground-equipment", 1).setValue(chr(receivedString[size(receivedString)-10]));
-        me.mySelf.getNode("gear/gear[0]/wow", 1).setValue(chr(receivedString[size(receivedString)-9]));
+        me.mySelf.getNode("gear/gear[2]/wow", 1).setValue(chr(receivedString[size(receivedString)-9]));
         me.mySelf.getNode("gear/gear[1]/wow", 1).setValue(chr(receivedString[size(receivedString)-8]));
-        me.mySelf.getNode("gear/gear[2]/wow", 1).setValue(chr(receivedString[size(receivedString)-7]));
+        me.mySelf.getNode("gear/gear[0]/wow", 1).setValue(chr(receivedString[size(receivedString)-7]));
         
         
         me.mySelf.getNode("systems/electrical/outputs/strobe", 1).setValue(chr(receivedString[size(receivedString)-6]));

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 
 <PropertyList>
-
-  <!-- If you put the dialog file in the Aircraft/aircraftname/gui/dialog the dialog box is loaded -->
   <name>about_Mirage</name>
   <modal type="bool">false</modal>
   <layout>vbox</layout>
@@ -25,7 +23,6 @@
       <pref-width>16</pref-width>
       <pref-height>16</pref-height>
       <legend></legend>
-
       <default>1</default>
       <keynum>27</keynum>
       <border>2</border>
@@ -37,43 +34,60 @@
       </binding>
     </button>
   </group>
-  
-  <text><label>Mirage 2000-5, by 5H1N0B1</label></text>
 
   <hrule />
 
-  <text><label>Special Thanks to : </label></text>
+  <text><label>Dassault Mirage 2000-5 by 5H1N0B1</label></text>
+
+  <empty>
+    <stretch>1</stretch>
+  </empty>
+
+  <text><label>Special Thanks to: </label></text>
+
+  <empty>
+    <stretch>1</stretch>
+  </empty>
+
+  <text><label>Helijah (3D model), Buckaroo (FDM), 5HIN0B1 (working weapons and systems), hardball (3D, systems,</label></text>
+  <text><label>dual seat), Josh Davidson (FCS/FBW/Autopilot), Leto, Richard, onox, legoboyvdlp, Domokos Juttner (Rudolf),</label></text>
+  <text><label>Koubi (engine script), Ray (helping on the MFD), F-Sig (3D and MFD), Xiii (fox2.nas, the initial missile script),</label></text>
+  <text><label>Gijs (wiki page), F-GTUX, Anusil, Talons (testing), J Maverick 16, OPRF Crew (testing) and all those forgotten here.</label></text>
+  <text><label>Thanks to all!</label></text>
 
   <hrule />
 
-  <text><label>Helijah (for the 3D model), Buckaroo (for the FDM), 5HIN0B1 (for the working weapons and systems), </label></text>
-  <text><label>hardball (3D, systems, dual seat), Joshua Davidson (FCS/FBW/Autopilot) Leto, Richard, onox, legoboyvdlp, Domokos Juttner (Rudolf)</label></text>
-  <text><label>Koubi (for the engine script),  Ray (for helping on the MFD), F-Sig (For 3D and MFD), Xiii (for fox2.nas, the initial missile script), </label></text>
-  <text><label>Gijs (for the wiki page) , FG-TUX, Anusil, fb237 (for testing), OPRF guys (for testing) and all those forgotten here</label></text>
-  <text><label>Thanks to all. </label></text>
-
-  <hrule />
-
-  <button>
-    <legend>Developpement link</legend>
-    <binding>
-      <command>nasal</command>
-      <script>
-        var phrase = "Developpement link : https://github.com/5H1N0B11/Aircraft";
-        setprop("/sim/multiplay/chat", phrase);
+  <group>
+    <layout>table</layout>
+    <button>
+      <row>0</row>
+      <col>0</col>
+      <legend>Development link</legend>
+      <binding>
+        <command>nasal</command>
+        <script>
+          var phrase = "Development link: https://github.com/5H1N0B11/Aircraft";
+          setprop("/sim/multiplay/chat", phrase);
         </script>
-    </binding>
-  </button>
+      </binding>
+    </button>
 
-  <button>
-    <legend>Stable Release</legend>
-    <binding>
-      <command>nasal</command>
-      <script>
-var phrase = "Stable Release : FGADDON";
-setprop("/sim/multiplay/chat", phrase);
+    <button>
+      <row>0</row>
+      <col>1</col>
+      <legend>Stable Release</legend>
+      <binding>
+        <command>nasal</command>
+        <script>
+          var phrase = "Stable Release: Available on FGADDON";
+          setprop("/sim/multiplay/chat", phrase);
         </script>
-    </binding>
-  </button>
+      </binding>
+    </button>
+  </group>
+
+  <empty>
+    <stretch>1</stretch>
+  </empty>
 
 </PropertyList>
