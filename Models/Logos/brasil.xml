@@ -5,7 +5,7 @@
   <sim>
     <model>
       <logos>
-        <name type="string">Brasilian Air Force (1)</name>
+        <name type="string">Brasilian Air Force (4)</name>
         <texture>brasil.png</texture>
         <specular>
           <red>   0.3 </red>
